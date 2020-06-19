@@ -1,0 +1,21 @@
+{
+  "translation": {
+    "field required": "This field is required",
+    "fill profile": "Fill your profile",
+    "name": "Name",
+    "birthday": "birthday",
+    "city": "City",
+    "save": "save",
+    "event in": "in",
+    "join": "join",
+    "add event": "Add event",
+    "date": "data",
+    "you have no events": "you have no events",
+    "browse": "browse",
+    "description event": "Description your event",
+    "max 500 characters": "max 500 characters",
+    "Profile settings": "Profile settings",
+    "save foto": "save foto",
+    "selectfoto": "select foto"
+  }
+}

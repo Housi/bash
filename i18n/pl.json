@@ -1,0 +1,20 @@
+{
+  "translation": {
+    "field required": "Te pole nie może byc puste",
+    "fill profile": "Uzupełnij dane",
+    "name": "Imię",
+    "birthday": "Data urodzenia",
+    "save": "zapisz",
+    "event in": "za",
+    "join": "dołącz",
+    "add event": "dodaj wydarzenie",
+    "date": "Data",
+    "you have no events": "nie masz jeszcze żadnych wydarzeń",
+    "browse": "przeglądaj",
+    "description event": "Opisz swoj event",
+    "max 500 characters": "max 500 znaków",
+    "Profile settings": "Ustawienia profilu",
+    "save foto": "zapisz foto",
+    "selectfoto": "wybierz foto"
+  }
+}

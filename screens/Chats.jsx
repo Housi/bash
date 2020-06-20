@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
-import styled from "styled-components";
+import styled from "styled-components/native";
 // import { navigate } from "hookrouter";
 import { chatApi, acceptChat, rejectChat } from "data/ChatService";
 import { otherProfile, UserContext } from "data/UserContext";
-import { Button } from "@ui-kitten/components";
+import { Button, Text } from "@ui-kitten/components";
+import { BOX_BORDER } from "theme";
+
 import SimpleHeader from "components/SimpleHeader";
 
-const ChatBox = styled.div`
-  border: var(--box-border);
-  background: var(--fg-color);
+const ChatBox = styled.View`
+  border: ${BOX_BORDER};
   display: flex;
 `;
 
-const Image = styled.img`
+const FriendImage = styled.Image`
   width: 50px;
   height: 50px;
-  object-fit: cover;
 `;
 
 const Chats = ({ navigation }) => {
@@ -48,17 +48,15 @@ const Chats = ({ navigation }) => {
       {chats.map(({ id, lastMessage, status, profiles }) => {
         const friend = otherProfile(profiles);
         return (
-          <ChatBox onClick={() => openChat(status, id)} key={id}>
-            <Image src={friend.photoUrl} alt="friend" />
-            <p>{lastMessage.content}</p>
+          <ChatBox level="1" onClick={() => openChat(status, id)} key={id}>
+            <FriendImage source={friend.photoUrl} alt="friend" />
+            <Text>{lastMessage.content}</Text>
             {status === "pending" && (
               <>
-                <Button
-                  onClick={() => acceptChat({ id, message: lastMessage })}
-                >
+                <Button onPush={() => acceptChat({ id, message: lastMessage })}>
                   accept
                 </Button>
-                <Button onClick={() => rejectChat(id)} type="secondary">
+                <Button onPush={() => rejectChat(id)} type="secondary">
                   reject
                 </Button>
               </>

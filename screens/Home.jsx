@@ -11,6 +11,7 @@ import {
   Avatar,
   Layout,
 } from "@ui-kitten/components";
+import { ScrollView } from "react-native";
 
 const Home = ({ navigation }) => {
   const { uid, user } = useContext(UserContext);
@@ -37,7 +38,7 @@ const Home = ({ navigation }) => {
   );
 
   const ChatsLink = (props) => {
-    const ChatsIcon = (props) => <Icon name="email-outline" {...props} />;
+    const ChatsIcon = () => <Icon name="email-outline" {...props} />;
     return (
       <TopNavigationAction
         icon={ChatsIcon}
@@ -56,12 +57,12 @@ const Home = ({ navigation }) => {
   return (
     <>
       <TopNavigation accessoryRight={NavIcons} title="Bash" />
-      <Layout>
+      <ScrollView>
         <EventList events={events} />
         {/* <Drawer>
         <EventEdit event={userEvent} />
       </Drawer> */}
-      </Layout>
+      </ScrollView>
     </>
   );
 };

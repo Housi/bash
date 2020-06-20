@@ -1,29 +1,27 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { Input, Button, Text, Datepicker } from "@ui-kitten/components";
+import { CONTENT_WIDTH, SPACE } from "theme";
 
 import { addEvent, updateEvent } from "data/EventService";
-import FormError from "components/ui/FormError";
-import Button from "components/ui/Button";
-import Input from "components/ui/Input";
-import Textarea from "components/ui/Textarea";
-import styled from "styled-components";
+import styled from "styled-components/native";
 
-const FormWrapper = styled.form`
+const FormWrapper = styled.View`
   display: flex;
   flex-direction: column;
-  max-width: var(--content-width);
+  max-width: ${CONTENT_WIDTH};
   margin: 0 auto;
-  padding: var(--space);
+  padding: ${SPACE};
 `;
 
-const TitlePage = styled.h1`
+const TitlePage = styled.Text`
   text-align: center;
 `;
 
 const EventEdit = ({ event }) => {
   const { description, date } = event;
-  const { register, handleSubmit, errors } = useForm();
+  const { control, handleSubmit, errors } = useForm();
   const { t } = useTranslation();
 
   const onSubmit = async (formData) => {
@@ -34,25 +32,26 @@ const EventEdit = ({ event }) => {
   };
 
   return (
-    <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+    <FormWrapper>
       <TitlePage>{t("add event")}</TitlePage>
-      <label>{t("date")}: </label>
-      <Input
-        type="date"
+      {/* <Text>{t("date")}: </Text> */}
+      <Controller
+        as={<Datepicker />}
         name="date"
+        control={control}
         defaultValue={date}
-        ref={register({ required: true })}
       />
+
       {errors.date && <FormError />}
 
-      <label>{t("description event")}</label>
-      <Textarea
-        type="textarea"
-        defaultValue={description}
+      {/* <Text>{t("description event")}</Text> */}
+      <Controller
+        as={<Input multiline={true} />}
         name="description"
-        ref={register({ required: true })}
+        control={control}
+        defaultValue={description}
       />
-      <Button onClick={handleSubmit(onSubmit)}>{t("save")}</Button>
+      <Button onPress={handleSubmit(onSubmit)}>{t("save")}</Button>
     </FormWrapper>
   );
 };

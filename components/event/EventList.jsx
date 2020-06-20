@@ -1,19 +1,19 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import Event from "components/event/Event";
-import { List, ListItem } from "@ui-kitten/components";
+import { SPACE } from "theme";
 
-const Container = styled.div`
-  padding: var(--space);
+const Container = styled.View`
+  padding: ${SPACE};
 `;
 
 const EventList = ({ events }) => {
   return (
-    <>
+    <Container>
       {events.map((event) => {
         return <Event event={event} key={event.userId} />;
       })}
-    </>
+    </Container>
   );
 };
 

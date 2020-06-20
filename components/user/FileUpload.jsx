@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "/data/UserContext";
 import fb from "/data/firebase";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { useTranslation } from "react-i18next";
 import Button from "/components/ui/Button";
 

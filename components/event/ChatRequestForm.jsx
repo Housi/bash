@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { useForm, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -29,7 +29,6 @@ const ChatRequestForm = ({ userIdTo, onClose }) => {
 
   return (
     <FormWrapper>
-      <StyledTextarea name="message" defaultValue="Hey whats the details" />
       <Controller
         as={<Input multiline={true} />}
         name="message"

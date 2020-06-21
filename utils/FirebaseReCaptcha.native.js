@@ -6,7 +6,7 @@ const FirebaseReCaptcha = ({ onVerify, firebaseConfig }) => {
 
   useLayoutEffect(() => {
     onVerify(recaptchaVerifier.current);
-  }, [recaptchaVerifier]);
+  }, []);
 
   return (
     <FirebaseRecaptchaVerifierModal

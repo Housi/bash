@@ -6,7 +6,7 @@ import FirebaseRecaptcha from "utils/FirebaseReCaptcha";
 
 const Login = () => {
   const recaptchaRef = useRef(null);
-  const [verificationId, setVerificationId] = useState(null);
+  const [verificationId, setVerificationId] = useState();
 
   const [code, setCode] = useState("");
   const [phone, setPhone] = useState("");
@@ -14,16 +14,22 @@ const Login = () => {
 
   // Handle the button press
   async function signInWithPhoneNumber() {
-    const vId = await fb.PhoneAuthProvider.verifyPhoneNumber(phone, reCaptcha);
+    const vId = await fb.auth.signInWithPhoneNumber(phone, reCaptcha);
+    console.log("vid");
+    console.log(vId);
     setVerificationId(vId);
   }
 
-  async function confirmCode() {
-    const credential = fb.PhoneAuthProvider.credential(verificationId, code);
-    const authResult = await fb.auth.signInWithCredential(credential);
-  }
+  const confirmCode = () => {
+    if (!verificationId) return;
+    console.log(verificationId);
+    console.log("verificationId");
 
-  if (!confirm) {
+    verificationId.confirm(code);
+    // const authResult = await fb.auth.signInWithCredential(credential);
+  };
+
+  if (!verificationId) {
     return (
       <>
         <Text>Login</Text>
@@ -33,12 +39,13 @@ const Login = () => {
           keyboardType="phone-pad"
           placeholder="Your phone"
         />
-        <Button title="Send SMS" onPress={() => signInWithPhoneNumber()} />
+        <Button onPress={() => signInWithPhoneNumber()}>Send SMS</Button>
 
         <FirebaseRecaptcha
           // onError={this.onError}
-          onVerify={(token) => {
-            setReCaptcha(token);
+          onVerify={(rc) => {
+            console.log(rc);
+            setReCaptcha(rc);
           }}
           firebaseConfig={fb.config}
         />
@@ -49,7 +56,7 @@ const Login = () => {
   return (
     <>
       <Input value={code} onChangeText={(text) => setCode(text)} />
-      <Button title="Confirm Code" onPress={() => confirmCode()} />
+      <Button onPress={() => confirmCode()}>Confirm Code</Button>
     </>
   );
 };

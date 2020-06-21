@@ -42,33 +42,33 @@ const FileUpload = ({ user }) => {
   const [imageUrl, setImageUrl] = useState(null);
 
   const handleChange = (e) => {
-    if (e.target.files[0]) {
-      setImageUrl(URL.createObjectURL(e.target.files[0]));
-      setImage(e.target.files[0]);
-    }
+    // if (e.target.files[0]) {
+    //   setImageUrl(URL.createObjectURL(e.target.files[0]));
+    //   setImage(e.target.files[0]);
+    // }
   };
 
   const handleUpload = () => {
-    console.log(image.name);
-    const uploadTask = fb.storage.ref(`images/${image.name}`).put(image);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        const profileApi = fb.database.collection("profiles");
-        fb.storage
-          .ref("images")
-          .child(image.name)
-          .getDownloadURL()
-          .then(async (url) => {
-            await profileApi.doc(auth.uid).update({ photoUrl: url });
-            window.location.reload();
-          });
-      }
-    );
+    // console.log(image.name);
+    // const uploadTask = fb.storage.ref(`images/${image.name}`).put(image);
+    // uploadTask.on(
+    //   "state_changed",
+    //   (snapshot) => {},
+    //   (error) => {
+    //     console.log(error);
+    //   },
+    //   () => {
+    //     const profileApi = fb.database.collection("profiles");
+    //     fb.storage
+    //       .ref("images")
+    //       .child(image.name)
+    //       .getDownloadURL()
+    //       .then(async (url) => {
+    //         await profileApi.doc(auth.uid).update({ photoUrl: url });
+    //         window.location.reload();
+    //       });
+    //   }
+    // );
   };
 
   return (

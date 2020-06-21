@@ -10,10 +10,7 @@ export default function FirebaseRecaptcha({ onVerify }) {
       recaptchaContainer.current,
       {
         size: "invisible",
-        callback: function(response) {
-          console.log("response");
-          onVerify(response);
-        },
+        callback: function(response) {},
         "expired-callback": function() {
           // Response expired. Ask user to solve reCAPTCHA again.
           // ...

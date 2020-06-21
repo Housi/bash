@@ -3,6 +3,7 @@ import { UserContext } from "data/UserContext";
 import { getEvents, Event } from "data/EventService";
 import EventList from "components/event/EventList";
 import EventEdit from "components/event/EventEdit";
+// import Logo from "components/ui/Logo";
 import {
   Icon,
   Text,
@@ -38,7 +39,7 @@ const Home = ({ navigation }) => {
   );
 
   const ChatsLink = (props) => {
-    const ChatsIcon = () => <Icon name="email-outline" {...props} />;
+    const ChatsIcon = (props) => <Icon name="email-outline" {...props} />;
     return (
       <TopNavigationAction
         icon={ChatsIcon}

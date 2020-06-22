@@ -3,6 +3,7 @@ import {
   Icon,
   TopNavigation,
   TopNavigationAction,
+  Text,
 } from "@ui-kitten/components";
 
 const SimpleHeader = ({ navigation }) => {
@@ -12,7 +13,11 @@ const SimpleHeader = ({ navigation }) => {
     <TopNavigationAction onPress={() => navigation.goBack()} icon={BackIcon} />
   );
   return (
-    <TopNavigation accessoryLeft={BackAction} title="Bash" alignment="center" />
+    <TopNavigation
+      accessoryLeft={BackAction}
+      title={<Text onClick={() => navigation.navigate("home")}>Bash</Text>}
+      alignment="center"
+    />
   );
 };
 

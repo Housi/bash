@@ -13,8 +13,9 @@ class Message {
 }
 
 const sendMessage = ({ message, chatId, userId }) => {
+  const newMessageId = `${new Date().getTime()}_${shortid.generate()}`;
   const newMessage = {
-    [shortid.generate()]: new Message({ message, userId }),
+    [newMessageId]: new Message({ message, userId }),
   };
   const parsed = JSON.parse(JSON.stringify(newMessage));
   messageApi.doc(chatId).update(parsed);

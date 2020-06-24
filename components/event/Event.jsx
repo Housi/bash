@@ -50,7 +50,11 @@ const Event = ({ event }) => {
       ) : (
         <Card>
           <CardSide>
-            <Avatar source={user.photoUrl} shape="square" size="large" />
+            <Avatar
+              source={{ uri: user.photoUrl }}
+              shape="square"
+              size="large"
+            />
           </CardSide>
 
           <CardMain>

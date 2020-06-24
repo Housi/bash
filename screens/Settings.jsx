@@ -25,7 +25,7 @@ const Settings = ({ navigation }) => {
 
       <Layout>
         <ProfileForm />
-        <Button onPress={auth.logout}>{t("logout")}</Button>
+        <Button onPress={() => auth.logout}>{t("logout")}</Button>
       </Layout>
     </>
   );

@@ -30,7 +30,7 @@ const Chat = ({ navigation, route }) => {
 
   useEffect(() => {
     messageApi.doc(chatId).onSnapshot((doc) => {
-      const msg = Object.values(doc.data());
+      const msg = Object.values(doc.data().orderBy("timestamp"));
       setMessages(msg);
     });
   }, [chatId]);

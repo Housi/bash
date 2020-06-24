@@ -12,7 +12,7 @@ import {
   Avatar,
   Layout,
 } from "@ui-kitten/components";
-import { ScrollView } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
 
 const Home = ({ navigation }) => {
   const { uid, user } = useContext(UserContext);
@@ -31,11 +31,12 @@ const Home = ({ navigation }) => {
   }, [uid]);
 
   const SettingsLink = () => (
-    <Avatar
-      onClick={() => navigation.navigate("settings")}
-      source={user.photoUrl || DEFAULT_AVATAR_URL}
-      alt="user"
-    />
+    <TouchableOpacity onPress={() => navigation.navigate("settings")}>
+      <Avatar
+        source={{ uri: user.photoUrl || DEFAULT_AVATAR_URL }}
+        alt="user"
+      />
+    </TouchableOpacity>
   );
 
   const ChatsLink = (props) => {

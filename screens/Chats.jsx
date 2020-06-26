@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { TouchableOpacity, ScrollView } from "react-native";
 import { chatApi, acceptChat, rejectChat } from "data/ChatService";
 import { otherProfile, UserContext } from "data/UserContext";
-import { Button, Text } from "@ui-kitten/components";
+import { Button, Text, Layout } from "@ui-kitten/components";
 import { BOX_BORDER } from "theme";
 
 import SimpleHeader from "components/SimpleHeader";
@@ -11,11 +11,25 @@ import SimpleHeader from "components/SimpleHeader";
 const ChatBox = styled.View`
   border: ${BOX_BORDER};
   display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const FriendImage = styled.Image`
   width: 50px;
   height: 50px;
+`;
+const ButtonBox = styled(Layout)`
+  display: flex;
+  flex-direction: row;
+`;
+
+const ChatsBox = styled(ScrollView)`
+  margin: 15px;
+`;
+
+const Message = styled(Text)`
+  margin: 5px;
 `;
 
 const Chats = ({ navigation }) => {
@@ -42,33 +56,39 @@ const Chats = ({ navigation }) => {
   };
 
   return (
-    <ScrollView>
+    <>
       <SimpleHeader navigation={navigation} />
-
-      {chats.map(({ id, lastMessage, status, profiles }) => {
-        const friend = otherProfile(profiles);
-        return (
-          <TouchableOpacity onPress={() => openChat(status, id)} key={id}>
-            <ChatBox level="1">
-              <FriendImage source={{ uri: friend.photoUrl }} alt="friend" />
-              <Text>{lastMessage.content}</Text>
-              {status === "pending" && (
-                <>
-                  <Button
-                    onPress={() => acceptChat({ id, message: lastMessage })}
-                  >
-                    accept
-                  </Button>
-                  <Button onPress={() => rejectChat(id)} type="secondary">
-                    reject
-                  </Button>
-                </>
-              )}
-            </ChatBox>
-          </TouchableOpacity>
-        );
-      })}
-    </ScrollView>
+      <ChatsBox>
+        {chats.map(({ id, lastMessage, status, profiles }) => {
+          const friend = otherProfile(profiles);
+          return (
+            <TouchableOpacity onPress={() => openChat(status, id)} key={id}>
+              <ChatBox level="1">
+                <FriendImage source={{ uri: friend.photoUrl }} alt="friend" />
+                <Message>{lastMessage.content}</Message>
+                {status === "pending" && (
+                  <ButtonBox>
+                    <Button
+                      size="small"
+                      onPress={() => acceptChat({ id, message: lastMessage })}
+                    >
+                      accept
+                    </Button>
+                    <Button
+                      size="small"
+                      onPress={() => rejectChat(id)}
+                      appearance="outline"
+                    >
+                      reject
+                    </Button>
+                  </ButtonBox>
+                )}
+              </ChatBox>
+            </TouchableOpacity>
+          );
+        })}
+      </ChatsBox>
+    </>
   );
 };
 

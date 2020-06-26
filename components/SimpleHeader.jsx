@@ -1,10 +1,16 @@
 import React, { useContext } from "react";
+import styled from "styled-components";
+
 import {
   Icon,
   TopNavigation,
   TopNavigationAction,
   Text,
 } from "@ui-kitten/components";
+
+const Header = styled(TopNavigation)`
+  padding: 20px 0 20px 0;
+`;
 
 const SimpleHeader = ({ navigation }) => {
   const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
@@ -13,9 +19,13 @@ const SimpleHeader = ({ navigation }) => {
     <TopNavigationAction onPress={() => navigation.goBack()} icon={BackIcon} />
   );
   return (
-    <TopNavigation
+    <Header
       accessoryLeft={BackAction}
-      title={<Text onClick={() => navigation.navigate("home")}>Bash</Text>}
+      title={
+        <Text category="h2" onClick={() => navigation.navigate("home")}>
+          Bash
+        </Text>
+      }
       alignment="center"
     />
   );

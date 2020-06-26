@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import { useTranslation } from "react-i18next";
-import { Layout, Button, Text, Avatar } from "@ui-kitten/components";
+import { Layout, Button, Avatar } from "@ui-kitten/components";
 import { SPACE, BOX_BORDER, COLOR_YELLOW, FG_COLOR } from "theme";
 
 import ChatRequestForm from "components/event/ChatRequestForm";
@@ -11,26 +11,30 @@ const UserInfo = styled.Text`
   font-weight: bold;
 `;
 
-const Card = styled.View`
+const CardBox = styled.View`
   border: 2px solid black;
-  flex: 1;
+  display: flex;
   flex-direction: row;
 `;
 
 const CardMain = styled.View`
   padding: 0 ${SPACE};
+  width: 60%;
 `;
 
 const EventMiniCard = styled(Layout)`
   background-color: ${FG_COLOR};
   padding: ${SPACE};
   border: ${BOX_BORDER};
-  margin-bottom: 1px;
+  margin-bottom: 10px;
+  min-width: 40%;
 `;
 
 const Time = styled.Text`
   background: ${COLOR_YELLOW};
 `;
+
+const Description = styled.Text``;
 
 const CardActions = styled.View``;
 
@@ -48,12 +52,12 @@ const Event = ({ event }) => {
       {showForm ? (
         <ChatRequestForm onClose={() => setShowForm(false)} userIdTo={userId} />
       ) : (
-        <Card>
+        <CardBox>
           <CardSide>
             <Avatar
               source={{ uri: user.photoUrl }}
               shape="square"
-              size="large"
+              size="giant"
             />
           </CardSide>
 
@@ -64,13 +68,14 @@ const Event = ({ event }) => {
             <UserInfo>
               {user.name} 🎉 {userAge}
             </UserInfo>
-            <Text>{description}</Text>
+
+            <Description>{description}</Description>
           </CardMain>
 
           <CardActions>
             <Button onPress={() => setShowForm(true)}>{t("join")}</Button>
           </CardActions>
-        </Card>
+        </CardBox>
       )}
     </EventMiniCard>
   );

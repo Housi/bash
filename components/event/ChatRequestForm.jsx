@@ -8,8 +8,15 @@ import { Input, Button, Layout, Text, View } from "@ui-kitten/components";
 import { chatRequest } from "data/ChatService";
 import { UserContext } from "data/UserContext";
 
-const FormWrapper = styled.View`
+const FormWrapper = styled(Layout)`
   display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const ButtonBox = styled(Layout)``;
+const InputBox = styled(Input)`
+  width: 70%;
 `;
 
 const ChatRequestForm = ({ userIdTo, onClose }) => {
@@ -30,23 +37,18 @@ const ChatRequestForm = ({ userIdTo, onClose }) => {
 
   return (
     <FormWrapper>
-      {/* <StyledTextarea name="message" defaultValue="Hey whats the details" /> */}
-      <Input
+      <InputBox
         name="message"
         multiline={true}
         defaultValue="Hey whats the details"
         onChangeText={(nextValue) => setMessage(nextValue)}
       />
-      {/* <Controller
-        as={<Input multiline={true} />}
-        name="message"
-        control={control}
-        defaultValue="Hey whats the details"
-      /> */}
-      <Layout>
+      <ButtonBox>
         <Button onPress={onSubmit}>{t("send")}</Button>
-        <Button onPress={onClose}>{t("cancel")}</Button>
-      </Layout>
+        <Button appearance="outline" onPress={onClose}>
+          {t("cancel")}
+        </Button>
+      </ButtonBox>
     </FormWrapper>
   );
 };

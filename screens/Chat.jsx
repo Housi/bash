@@ -5,6 +5,7 @@ import { messageApi, sendMessage } from "data/MessageService";
 import { Input, Button, Layout, Text } from "@ui-kitten/components";
 import SimpleHeader from "components/SimpleHeader";
 import { SPACE, CONTENT_WIDTH } from "theme";
+import { ScrollView } from "react-native-gesture-handler";
 
 const MessageBox = styled.View`
   background: pink;
@@ -16,6 +17,10 @@ const Form = styled.View`
   max-width: ${CONTENT_WIDTH};
   margin: 0 auto;
   display: flex;
+`;
+
+const Box = styled.ScrollView`
+  padding: 17px;
 `;
 
 const Chat = ({ navigation, route }) => {
@@ -38,16 +43,18 @@ const Chat = ({ navigation, route }) => {
   return (
     <>
       <SimpleHeader navigation={navigation} />
-      <Text>superchat</Text>
-      {messages.map((message, index) => (
-        <Text key={index}>{message.content}</Text>
-      ))}
-      <Form>
-        <MessageBox>
-          <Input onChangeText={(nextValue) => setMessage(nextValue)} />
-          <Button onPress={onSubmit}>send</Button>
-        </MessageBox>
-      </Form>
+      <Box>
+        <Text category="h3">superchat</Text>
+        {messages.map((message, index) => (
+          <Text key={index}>{message.content}</Text>
+        ))}
+        <Form>
+          <MessageBox>
+            <Input onChangeText={(nextValue) => setMessage(nextValue)} />
+            <Button onPress={onSubmit}>send</Button>
+          </MessageBox>
+        </Form>
+      </Box>
     </>
   );
 };

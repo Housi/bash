@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components/native";
 import { useForm, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -10,17 +10,17 @@ import FormError from "/components/ui/FormError";
 const FormWrapper = styled.View`
   display: flex;
   flex-direction: column;
-  margin-left: 3rem;
+  margin: 20px;
 `;
 
 const TitlePage = styled.Text`
   text-align: center;
+  font-size: 20px;
 `;
 
 const SettingsWrapper = styled.View`
   display: flex;
   justify-content: center;
-  margin: 4rem;
 `;
 
 const ProfileForm = () => {
@@ -28,8 +28,10 @@ const ProfileForm = () => {
   const { control, setValue, handleSubmit, errors } = useForm();
   const { name, birthday } = auth.user;
   const { t } = useTranslation();
+  const [birthdayy, setBirthday] = useState(new Date(birthday));
 
   const onSubmit = (data) => auth.updateProfile(data);
+  const settBirthday = (selected) => {};
 
   return (
     <View>
@@ -47,8 +49,8 @@ const ProfileForm = () => {
           {errors.name && <FormError />}
           <Text>{t("birthday")}: </Text>
           <Datepicker
-            onSelect={(selected) => setValue("birthday", selected)}
-            // date={birthday}
+            onSelect={(selected) => settBirthday(selected)}
+            date={birthdayy}
           />
           {errors.date && <FormError />}
 

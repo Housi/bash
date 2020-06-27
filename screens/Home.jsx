@@ -3,6 +3,7 @@ import { UserContext } from "data/UserContext";
 import { getEvents, Event } from "data/EventService";
 import EventList from "components/event/EventList";
 import EventEdit from "components/event/EventEdit";
+import styled from "styled-components";
 // import Logo from "components/ui/Logo";
 import {
   Icon,
@@ -13,6 +14,10 @@ import {
   Layout,
 } from "@ui-kitten/components";
 import { ScrollView, TouchableOpacity } from "react-native";
+
+const Navi = styled(TopNavigation)`
+  padding: 20px;
+`;
 
 const Home = ({ navigation }) => {
   const { uid, user } = useContext(UserContext);
@@ -49,16 +54,14 @@ const Home = ({ navigation }) => {
     );
   };
 
-  const NavIcons = () => (
-    <>
-      <SettingsLink />
-      <ChatsLink />
-    </>
-  );
-
   return (
     <>
-      <TopNavigation accessoryRight={NavIcons} title="Bash" />
+      <Navi
+        alignment="center"
+        title={<Text category="h2">Bash</Text>}
+        accessoryLeft={SettingsLink}
+        accessoryRight={ChatsLink}
+      ></Navi>
       <ScrollView>
         <EventList events={events} />
         {/* <Drawer>

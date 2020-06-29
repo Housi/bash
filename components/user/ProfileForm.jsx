@@ -6,6 +6,8 @@ import { UserContext } from "/data/UserContext";
 import { View } from "react-native";
 import { Button, Datepicker, Input, Text } from "@ui-kitten/components";
 import FormError from "/components/ui/FormError";
+import ImagePickerr from "/components/user/ImagePicker";
+import FileUpload from "/components/user/FileUpload";
 
 const FormWrapper = styled(View)`
   display: flex;
@@ -57,6 +59,7 @@ const ProfileForm = () => {
           <Button onPress={handleSubmit(onSubmit)}>{t("save")}</Button>
         </FormWrapper>
       </SettingsWrapper>
+      <ImagePickerr user={auth.user} />
     </View>
   );
 };

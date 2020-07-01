@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import { useTranslation } from "react-i18next";
+import { View, Text } from "react-native";
 import { Layout, Button, Avatar } from "@ui-kitten/components";
 import { SPACE, BOX_BORDER, COLOR_YELLOW, FG_COLOR } from "theme";
 
 import ChatRequestForm from "components/event/ChatRequestForm";
 import { getAge, formatDistanceToNow } from "utils/datefns";
 
-const UserInfo = styled.Text`
+const UserInfo = styled(Text)`
   font-weight: bold;
 `;
 
-const CardBox = styled.View`
+const CardBox = styled(View)`
   border: 2px solid black;
   display: flex;
   flex-direction: row;
 `;
 
-const CardMain = styled.View`
+const CardMain = styled(View)`
   padding: 0 ${SPACE};
   width: 60%;
 `;
@@ -30,15 +31,15 @@ const EventMiniCard = styled(Layout)`
   min-width: 40%;
 `;
 
-const Time = styled.Text`
+const Time = styled(Text)`
   background: ${COLOR_YELLOW};
 `;
 
-const Description = styled.Text``;
+const Description = styled(Text)``;
 
-const CardActions = styled.View``;
+const CardActions = styled(View)``;
 
-const CardSide = styled.View``;
+const CardSide = styled(View)``;
 
 const Event = ({ event }) => {
   const { date, description, user, userId } = event;

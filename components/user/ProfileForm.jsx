@@ -7,18 +7,18 @@ import { View } from "react-native";
 import { Button, Datepicker, Input, Text } from "@ui-kitten/components";
 import FormError from "/components/ui/FormError";
 
-const FormWrapper = styled.View`
+const FormWrapper = styled(View)`
   display: flex;
   flex-direction: column;
   margin: 20px;
 `;
 
-const TitlePage = styled.Text`
+const TitlePage = styled(Text)`
   text-align: center;
   font-size: 20px;
 `;
 
-const SettingsWrapper = styled.View`
+const SettingsWrapper = styled(View)`
   display: flex;
   justify-content: center;
 `;

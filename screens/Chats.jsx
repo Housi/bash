@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components/native";
-import { TouchableOpacity, ScrollView } from "react-native";
+import { TouchableOpacity, ScrollView, View, Image } from "react-native";
 import { chatApi, acceptChat, rejectChat } from "data/ChatService";
 import { otherProfile, UserContext } from "data/UserContext";
 import { Button, Text, Layout } from "@ui-kitten/components";
@@ -8,14 +8,14 @@ import { BOX_BORDER } from "theme";
 
 import SimpleHeader from "components/SimpleHeader";
 
-const ChatBox = styled.View`
+const ChatBox = styled(View)`
   border: ${BOX_BORDER};
   display: flex;
   flex-direction: row;
   align-items: center;
 `;
 
-const FriendImage = styled.Image`
+const FriendImage = styled(Image)`
   width: 50px;
   height: 50px;
 `;
@@ -41,7 +41,7 @@ const Chats = ({ navigation }) => {
       .where("users", "array-contains", uid)
       .onSnapshot((querySnapshot) => {
         const chats = [];
-        querySnapshot.forEach(function (doc) {
+        querySnapshot.forEach(function(doc) {
           chats.push({ id: doc.id, ...doc.data() });
         });
         setChats(chats);

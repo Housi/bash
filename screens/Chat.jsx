@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components/native";
 import { UserContext } from "data/UserContext";
-import { messageApi, sendMessage } from "data/MessageService";
+import { View } from "react-native";
+import { chatApi, sendMessage } from "data/MessageService";
 import { Input, Button, Layout, Text } from "@ui-kitten/components";
 import SimpleHeader from "components/SimpleHeader";
 import { SPACE, CONTENT_WIDTH } from "theme";
-import { ScrollView } from "react-native-gesture-handler";
 
-const MessageBox = styled.View`
+const MessageBox = styled(View)`
   background: pink;
   padding: ${SPACE};
 `;
 
-const Form = styled.View`
+const Form = styled(View)`
   width: 100%;
   max-width: ${CONTENT_WIDTH};
   margin: 0 auto;
@@ -34,10 +34,18 @@ const Chat = ({ navigation, route }) => {
   };
 
   useEffect(() => {
-    messageApi.doc(chatId).onSnapshot((doc) => {
-      const msg = Object.values(doc.data());
-      setMessages(msg);
-    });
+    chatApi
+      .doc(chatId)
+      .collection("messages")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((querySnapshot) => {
+        const messages = [];
+        querySnapshot.forEach(function(doc) {
+          const dataz = doc.data();
+          messages.push(dataz);
+        });
+        setMessages(messages);
+      });
   }, [chatId]);
 
   return (

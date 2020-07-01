@@ -3,7 +3,7 @@ import { UserContext } from "data/UserContext";
 import { getEvents, Event } from "data/EventService";
 import EventList from "components/event/EventList";
 import EventEdit from "components/event/EventEdit";
-import styled from "styled-components";
+import styled from "styled-components/native";
 // import Logo from "components/ui/Logo";
 import {
   Icon,

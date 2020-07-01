@@ -15,7 +15,7 @@ class Chat {
     this.users = [userIdFrom, userIdTo];
     this.profiles = [userProfileFrom, userProfileTo];
     this.status = "pending";
-    this.timestamp = new Date();
+    this.timestamp = firebase.timestamp();
     this.lastMessage = new Message({ message, userId: userIdFrom });
   }
 }

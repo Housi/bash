@@ -1,13 +1,14 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { View } from "react-native";
 import { Input, Button, Text, Datepicker } from "@ui-kitten/components";
 import { CONTENT_WIDTH, SPACE } from "theme";
 
 import { addEvent, updateEvent } from "data/EventService";
 import styled from "styled-components/native";
 
-const FormWrapper = styled.View`
+const FormWrapper = styled(View)`
   display: flex;
   flex-direction: column;
   max-width: ${CONTENT_WIDTH};
@@ -15,7 +16,7 @@ const FormWrapper = styled.View`
   padding: ${SPACE};
 `;
 
-const TitlePage = styled.Text`
+const TitlePage = styled(Text)`
   text-align: center;
 `;
 

@@ -5,6 +5,7 @@ import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { UserProvider } from "data/UserContext.js";
 import useCachedResources from "hooks/useCachedResources";
 import AppContainer from "screens/AppContainer";
+import "utils/firebaseFix.js";
 
 export default function App(props) {
   const isLoadingComplete = useCachedResources();

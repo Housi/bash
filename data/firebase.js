@@ -19,10 +19,9 @@ class Firebase {
   constructor() {
     firebase.initializeApp(firebaseConfig);
     this.auth = firebase.auth();
-    // this.auth = firebase.auth();
     this.RecaptchaVerifier = firebase.auth.RecaptchaVerifier;
-    // this.auth.useDeviceLanguage();
     this.database = firebase.firestore();
+    this.timestamp = firebase.firestore.FieldValue.serverTimestamp;
     this.storage = firebase.storage();
     this.PhoneAuthProvider = firebase.auth.PhoneAuthProvider();
     this.config = firebaseConfig;
